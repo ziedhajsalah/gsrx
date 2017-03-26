@@ -6,7 +6,7 @@ module.exports = {
   devtool: 'source-map',
   entry: {
     vendor: ['react', 'react-dom', 'redux'],
-    app: path.resolve(__dirname, 'src', 'index.js')
+    app: ['babel-polyfill', path.resolve(__dirname, 'src', 'index.js')]
   },
   output: {
     path: path.resolve(__dirname, 'public'),
@@ -15,13 +15,10 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx']
   },
-  devServer: {
-    contentBase: path.resolve(__dirname, 'public')
-  },
   module: {
     rules: [
       {
-        test: /\.js?$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: 'babel-loader'
       }
@@ -30,7 +27,9 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'public', 'index.html'),
-      title: 'Getting Started With Redux'
+      filename: 'index.html',
+      title: 'getting started with redux',
+      inject: 'body'
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor'
