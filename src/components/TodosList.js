@@ -4,7 +4,7 @@ import Todo from './Todo'
 
 type Props = {
   visibleTodos: Array<any>,
-  toggleTodo(): void
+  toggleTodo(id: number): void
 }
 
 const TodosList = ({visibleTodos, toggleTodo}: Props) => (

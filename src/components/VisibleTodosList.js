@@ -2,12 +2,14 @@
 import React, { Component } from 'react'
 import TodosList from './TodosList'
 import { filterTodos } from '../lib'
-import { toggleTodo } from '../lib/actions'
-import { store } from '../reducers/todos'
 
 export default class VisibleTodosList extends Component {
+  toggleTodo = (id: number) => {
+    this.props.store.dispatch({ type: 'TOGGLE_TODO', id })
+  }
+
   componentDidMount () {
-    this.unsubscribe = store.subscribe(() => {
+    this.unsubscribe = this.props.store.subscribe(() => {
       this.forceUpdate()
     })
   }
@@ -17,9 +19,10 @@ export default class VisibleTodosList extends Component {
   }
 
   render () {
-    const { todos, visibilityFilter } = store.getState()
+    const { todos, visibilityFilter } = this.props
+      .store.getState()
     return (
-      <TodosList toggleTodo={toggleTodo}
+      <TodosList toggleTodo={this.toggleTodo}
         visibleTodos={filterTodos(todos, visibilityFilter)} />
     )
   }

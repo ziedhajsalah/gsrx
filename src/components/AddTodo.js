@@ -1,11 +1,16 @@
 import React from 'react'
-import { submitTodo } from '../lib/actions'
+import { generateId } from '../lib/index'
 
-const AddTodo = () => {
+const AddTodo = ({store}) => {
   let input
   const handleSubmitTodo = e => {
     e.preventDefault()
-    submitTodo(input)
+    store.dispatch({
+      type: 'ADD_TODO',
+      text: input.value,
+      id: generateId()
+    })
+    input.value = ''
   }
   return (
     <form onSubmit={handleSubmitTodo}>
