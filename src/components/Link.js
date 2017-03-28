@@ -1,6 +1,13 @@
+// @flow
 import React from 'react'
 
-const Link = ({active, children, handleClick}) => {
+type Props = {
+  active: boolean,
+  children?: React.Element<*>,
+  handleClick(): void,
+};
+
+const Link = ({ active, children, handleClick }: Props) => {
   const onClick = e => {
     e.preventDefault()
     handleClick()

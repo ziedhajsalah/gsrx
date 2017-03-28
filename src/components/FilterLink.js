@@ -1,9 +1,21 @@
+// @flow
 import React, { Component } from 'react'
 import Link from './Link'
 import { setFilter } from '../lib/actions'
 import { store } from '../reducers/todos'
 
-export default class FilterLink extends Component {
+type DefaultProps = {}
+
+type Props = {
+  children: React.Element<*>,
+  filter: string
+}
+
+type State = {}
+
+export default class FilterLink extends Component<
+  DefaultProps, Props, State
+> {
   componentDidMount () {
     this.unsubscribe = store.subscribe(() => {
       this.forceUpdate()
