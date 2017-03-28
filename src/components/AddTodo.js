@@ -1,13 +1,14 @@
 import React from 'react'
+import { submitTodo } from '../lib/actions'
 
-const AddTodo = ({handleSubmit}) => {
+const AddTodo = () => {
   let input
-  const submitTodo = e => {
+  const handleSubmitTodo = e => {
     e.preventDefault()
-    handleSubmit(input)
+    submitTodo(input)
   }
   return (
-    <form onSubmit={submitTodo}>
+    <form onSubmit={handleSubmitTodo}>
       <input ref={node => { input = node }} />
     </form>
   )

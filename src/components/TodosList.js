@@ -1,7 +1,13 @@
+// @flow
 import React from 'react'
 import Todo from './Todo'
 
-const TodosList = ({visibleTodos, toggleTodo}) => (
+type Props = {
+  visibleTodos: Array<any>,
+  toggleTodo(): void
+}
+
+const TodosList = ({visibleTodos, toggleTodo}: Props) => (
   <ul>
     {
       visibleTodos.map(

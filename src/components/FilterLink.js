@@ -4,18 +4,13 @@ import Link from './Link'
 import { setFilter } from '../lib/actions'
 import { store } from '../reducers/todos'
 
-type DefaultProps = {}
-
 type Props = {
   children: React.Element<*>,
   filter: string
 }
 
-type State = {}
-
-export default class FilterLink extends Component<
-  DefaultProps, Props, State
-> {
+export default class FilterLink extends Component <
+  void, Props, void> {
   componentDidMount () {
     this.unsubscribe = store.subscribe(() => {
       this.forceUpdate()
@@ -32,10 +27,10 @@ export default class FilterLink extends Component<
 
   render () {
     const { children, filter } = this.props
-    const state = store.getState()
+    const { visibilityFilter } = store.getState()
     return (
       <Link
-        active={state.visibilityFilter === filter}
+        active={visibilityFilter === filter}
         handleClick={this.handleClick}
       >
         {children}
