@@ -1,15 +1,21 @@
 // @flow
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import TodosList from './TodosList'
 import { filterTodos } from '../lib'
 
 export default class VisibleTodosList extends Component {
+  unsubscribe: () => any
+
+  static contextTypes = {
+    store: PropTypes.object
+  }
+
   toggleTodo = (id: number) => {
-    this.props.store.dispatch({ type: 'TOGGLE_TODO', id })
+    this.context.store.dispatch({ type: 'TOGGLE_TODO', id })
   }
 
   componentDidMount () {
-    this.unsubscribe = this.props.store.subscribe(() => {
+    this.unsubscribe = this.context.store.subscribe(() => {
       this.forceUpdate()
     })
   }
@@ -19,7 +25,7 @@ export default class VisibleTodosList extends Component {
   }
 
   render () {
-    const { todos, visibilityFilter } = this.props
+    const { todos, visibilityFilter } = this.context
       .store.getState()
     return (
       <TodosList toggleTodo={this.toggleTodo}

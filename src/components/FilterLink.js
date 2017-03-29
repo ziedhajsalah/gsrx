@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import Link from './Link'
 
 type Props = {
@@ -10,8 +10,13 @@ type Props = {
 
 export default class FilterLink extends Component <
   void, Props, void> {
+  unsubscribe: () => any
+
+  static contextTypes = {
+    store: PropTypes.object
+  }
   componentDidMount () {
-    this.unsubscribe = this.props.store.subscribe(() => {
+    this.unsubscribe = this.context.store.subscribe(() => {
       this.forceUpdate()
     })
   }
@@ -21,14 +26,15 @@ export default class FilterLink extends Component <
   }
 
   handleClick = () => {
-    this.props.store.dispatch({
+    this.context.store.dispatch({
       type: 'SET_VISIBILITY_FILTER',
       filter: this.props.filter
     })
   }
 
   render () {
-    const { children, filter, store } = this.props
+    const { children, filter } = this.props
+    const { store } = this.context
     const { visibilityFilter } = store.getState()
     return (
       <Link

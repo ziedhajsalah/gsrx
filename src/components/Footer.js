@@ -1,22 +1,26 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import FilterLink from './FilterLink'
 
-const Footer = ({store}) => (
+const Footer = () => (
   <p>
     Show:
     {' '}
-    <FilterLink filter='SHOW_ALL' store={store}>
+    <FilterLink filter='SHOW_ALL'>
       All
     </FilterLink>
     {' '}
-    <FilterLink filter='SHOW_COMPLETED' store={store}>
+    <FilterLink filter='SHOW_COMPLETED'>
       Completed
     </FilterLink>
     {' '}
-    <FilterLink filter='SHOW_ACTIVE' store={store}>
+    <FilterLink filter='SHOW_ACTIVE'>
       ACTIVE
     </FilterLink>
   </p>
 )
+
+Footer.contextTypes = {
+  store: PropTypes.object
+}
 
 export default Footer

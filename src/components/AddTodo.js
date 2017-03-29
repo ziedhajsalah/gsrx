@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { generateId } from '../lib/index'
 
-const AddTodo = ({store}) => {
+const AddTodo = (props, {store}) => {
   let input
   const handleSubmitTodo = e => {
     e.preventDefault()
@@ -17,6 +17,10 @@ const AddTodo = ({store}) => {
       <input ref={node => { input = node }} />
     </form>
   )
+}
+
+AddTodo.contextTypes = {
+  store: PropTypes.object
 }
 
 export default AddTodo
