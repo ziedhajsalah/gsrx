@@ -1,15 +1,13 @@
-import React, { PropTypes } from 'react'
-import { generateId } from '../lib/index'
+// @flow
+import React from 'react'
+import { connect } from 'react-redux'
+import { addTodo } from '../actions'
 
-const AddTodo = (props, {store}) => {
+let AddTodo = ({dispatch}) => {
   let input
   const handleSubmitTodo = e => {
     e.preventDefault()
-    store.dispatch({
-      type: 'ADD_TODO',
-      text: input.value,
-      id: generateId()
-    })
+    dispatch(addTodo(input.value))
     input.value = ''
   }
   return (
@@ -19,8 +17,6 @@ const AddTodo = (props, {store}) => {
   )
 }
 
-AddTodo.contextTypes = {
-  store: PropTypes.object
-}
+AddTodo = connect()(AddTodo)
 
 export default AddTodo

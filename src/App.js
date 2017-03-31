@@ -1,6 +1,6 @@
 // @flow
 import React from 'react'
-import VisibleTodosList from './components/VisibleTodosList'
+import VisibleTodosList from './containers/VisibleTodosList'
 import Footer from './components/Footer'
 import AddTodo from './components/AddTodo'
 

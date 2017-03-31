@@ -1,4 +1,8 @@
 {
-  "presets": ["latest", "react", "flow"],
+  "presets": [
+    ["env", {"modules": false}],
+    "react",
+    "flow"
+  ],
   "plugins": ["transform-class-properties"]
 }
