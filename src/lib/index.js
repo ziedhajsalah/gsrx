@@ -1,12 +1,12 @@
 export const filterTodos = (todos, filter) => {
   switch (filter) {
-    case 'SHOW_ALL':
+    case 'all':
       return todos
-    case 'SHOW_COMPLETED':
+    case 'completed':
       return todos.filter(t => t.completed)
-    case 'SHOW_ACTIVE':
+    case 'active':
       return todos.filter(t => !t.completed)
+    default:
+      throw new Error(`Unknown filter: ${filter}`)
   }
 }
-
-export const generateId = () => Math.floor(Math.random() * 100000)

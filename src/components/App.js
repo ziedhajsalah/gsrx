@@ -1,8 +1,8 @@
 // @flow
 import React from 'react'
-import VisibleTodosList from './containers/VisibleTodosList'
-import Footer from './components/Footer'
-import AddTodo from './components/AddTodo'
+import VisibleTodosList from '../containers/VisibleTodosList'
+import Footer from './Footer'
+import AddTodo from './AddTodo'
 
 export default function App () {
   return (
