@@ -3,16 +3,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import TodosList from '../components/TodosList'
-import { toggleTodo, receiveTodos } from '../actions'
+import { toggleTodo, fetchTodos } from '../actions'
 import { getVisibleTodos } from '../reducers'
-import { fetchTodos } from '../api'
 
 class VisibleTodosList extends Component {
   fetchData = () => {
-    const { filter, receiveTodos } = this.props
+    const { filter, fetchTodos } = this.props
     fetchTodos(filter)
-      .then(res => res.json())
-      .then(todos => receiveTodos(filter, todos))
   }
 
   componentDidMount () {
@@ -45,8 +42,8 @@ const mapDispatchToProps = dispatch => ({
   toggleTodo (id) {
     dispatch(toggleTodo(id))
   },
-  receiveTodos (filter, todos) {
-    dispatch(receiveTodos(filter, todos))
+  fetchTodos (filter, todos) {
+    dispatch(fetchTodos(filter, todos))
   }
 })
 
