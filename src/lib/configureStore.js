@@ -12,7 +12,7 @@ const addLoggingToDispatch = store => {
     console.log('%c action: ', 'color: blue', action)
     const returnValue = rawDispatch(action)
     console.log('%c next state: ', 'color: green', store.getState())
-    console.group(action.type)
+    console.groupEnd(action.type)
 
     return returnValue
   }

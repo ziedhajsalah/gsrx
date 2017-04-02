@@ -3,27 +3,32 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import TodosList from '../components/TodosList'
-import { toggleTodo } from '../actions'
+import { toggleTodo, receiveTodos } from '../actions'
 import { getVisibleTodos } from '../reducers'
 import { fetchTodos } from '../api'
 
 class VisibleTodosList extends Component {
-  componentDidMount () {
-    fetchTodos(this.props.filter)
+  fetchData = () => {
+    const { filter, receiveTodos } = this.props
+    fetchTodos(filter)
       .then(res => res.json())
-      .then(json => console.log(this.props.filter, json))
+      .then(todos => receiveTodos(filter, todos))
+  }
+
+  componentDidMount () {
+    this.fetchData()
   }
 
   componentDidUpdate (prevProps) {
     if (this.props.filter !== prevProps.filter) {
-      fetchTodos(this.props.filter)
-        .then(res => res.json())
-        .then(json => console.log(this.props.filter, json))
+      this.fetchData()
     }
   }
 
   render () {
-    return <TodosList {...this.props} />
+    const { toggleTodo, ...rest } = this.props
+
+    return <TodosList {...rest} toggleTodo={toggleTodo} />
   }
 }
 
@@ -37,9 +42,15 @@ const mapStateToProps = (state, { match }) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  toggleTodo (id) { dispatch(toggleTodo(id)) }
+  toggleTodo (id) {
+    dispatch(toggleTodo(id))
+  },
+  receiveTodos (filter, todos) {
+    dispatch(receiveTodos(filter, todos))
+  }
 })
 
+/* eslint-disable no-class-assign */
 VisibleTodosList = withRouter(
   connect(
     mapStateToProps,
