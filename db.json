@@ -1,0 +1,24 @@
+{
+  "todos": [
+    {
+      "id": "34234-jklsd-3333-hfjs",
+      "text": "todo",
+      "completed": true
+    },
+    {
+      "id": "34234-jklsd-33ks-hfjs",
+      "text": "lolo",
+      "completed": false
+    },
+    {
+      "id": "34234-jklkjsd-3333-hfjs",
+      "text": "folo",
+      "completed": true
+    },
+    {
+      "id": "34234-jklsd-3333-hskdj",
+      "text": "nono",
+      "completed": false
+    }
+  ]
+}
