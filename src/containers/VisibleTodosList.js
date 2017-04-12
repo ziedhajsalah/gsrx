@@ -3,12 +3,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import TodosList from '../components/TodosList'
-import { toggleTodo, fetchTodos } from '../actions'
-import { getVisibleTodos } from '../reducers'
+import { toggleTodo, fetchTodos, requestTodos } from '../actions'
+import { getVisibleTodos, getIsFetching } from '../reducers'
 
 class VisibleTodosList extends Component {
   fetchData = () => {
-    const { filter, fetchTodos } = this.props
+    const { filter, requestTodos, fetchTodos } = this.props
+    requestTodos(filter)
     fetchTodos(filter)
   }
 
@@ -23,9 +24,12 @@ class VisibleTodosList extends Component {
   }
 
   render () {
-    const { toggleTodo, ...rest } = this.props
+    const { toggleTodo, visibleTodos, isFetching } = this.props
+    if (isFetching && !visibleTodos.length) {
+      return <p>Loading...</p>
+    }
 
-    return <TodosList {...rest} toggleTodo={toggleTodo} />
+    return <TodosList visibleTodos={visibleTodos} toggleTodo={toggleTodo} />
   }
 }
 
@@ -34,6 +38,7 @@ const mapStateToProps = (state, { match }) => {
 
   return {
     visibleTodos: getVisibleTodos(state, filter),
+    isFetching: getIsFetching(state, filter),
     filter
   }
 }
@@ -44,6 +49,9 @@ const mapDispatchToProps = dispatch => ({
   },
   fetchTodos (filter, todos) {
     dispatch(fetchTodos(filter, todos))
+  },
+  requestTodos (filter) {
+    dispatch(requestTodos(filter))
   }
 })
 
