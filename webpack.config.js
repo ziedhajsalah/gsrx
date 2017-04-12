@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   devtool: 'source-map',
   entry: {
-    vendor: ['react', 'react-dom', 'redux', 'react-redux'],
+    vendor: ['react', 'react-dom', 'redux', 'react-redux', 'react-router-dom'],
     app: ['babel-polyfill', path.resolve(__dirname, 'src', 'index.js')]
   },
   output: {
