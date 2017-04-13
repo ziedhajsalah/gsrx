@@ -34,6 +34,11 @@
       "id": "f8b2a45b-a5a5-437f-b443-af1e92c356fb",
       "text": "undone",
       "completed": false
+    },
+    {
+      "id": "070b0652-7445-44b4-b5ea-da04db54ba5d",
+      "text": "done",
+      "completed": false
     }
   ]
 }
