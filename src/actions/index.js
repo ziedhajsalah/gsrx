@@ -1,19 +1,25 @@
 import { v4 } from 'node-uuid'
 import * as api from '../api'
-
-export const requestTodos = filter => ({ type: 'REQUEST_TODOS', filter })
+import { getIsFetching } from '../reducers'
 
 export const addTodo = text => ({ type: 'ADD_TODO', text, id: v4() })
 
 export const toggleTodo = id => ({ type: 'TOGGLE_TODO', id })
 
-const receiveTodos = (filter, response) => ({
-  type: 'RECEIVE_TODOS',
-  filter,
-  response
-})
+export const fetchTodos = filter => (dispatch, getState) => {
+  if (getIsFetching(getState(), filter)) return Promise.resolve()
 
-export const fetchTodos = filter =>
-  api.fetchTodos(filter)
+  dispatch({ type: 'FETCH_TODOS_REQUEST', filter })
+  return api.fetchTodos(filter)
     .then(res => res.json())
-    .then(todos => receiveTodos(filter, todos))
+    .then(todos => {
+      dispatch({ type: 'FETCH_TODOS_SUCCESS', filter, todos })
+    })
+    .catch(err => {
+      dispatch({
+        type: 'FETCH_TODOS_FAILURE',
+        filter,
+        message: err.message || 'something went wrong!'
+      })
+    })
+}

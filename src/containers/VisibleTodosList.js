@@ -3,13 +3,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import TodosList from '../components/TodosList'
-import { toggleTodo, fetchTodos, requestTodos } from '../actions'
-import { getVisibleTodos, getIsFetching } from '../reducers'
+import FetchError from '../components/FetchError'
+import { toggleTodo, fetchTodos } from '../actions'
+import { getVisibleTodos, getIsFetching, getErrorMessage } from '../reducers'
 
 class VisibleTodosList extends Component {
   fetchData = () => {
-    const { filter, requestTodos, fetchTodos } = this.props
-    requestTodos(filter)
+    const { filter, fetchTodos } = this.props
     fetchTodos(filter)
   }
 
@@ -24,9 +24,15 @@ class VisibleTodosList extends Component {
   }
 
   render () {
-    const { toggleTodo, visibleTodos, isFetching } = this.props
+    const { toggleTodo, errorMessage, visibleTodos, isFetching } = this.props
     if (isFetching && !visibleTodos.length) {
       return <p>Loading...</p>
+    }
+
+    if (errorMessage && !visibleTodos.length) {
+      return (
+        <FetchError message={errorMessage} onRetry={() => this.fetchData()} />
+      )
     }
 
     return <TodosList visibleTodos={visibleTodos} toggleTodo={toggleTodo} />
@@ -38,6 +44,7 @@ const mapStateToProps = (state, { match }) => {
 
   return {
     visibleTodos: getVisibleTodos(state, filter),
+    errorMessage: getErrorMessage(state, filter),
     isFetching: getIsFetching(state, filter),
     filter
   }
@@ -49,9 +56,6 @@ const mapDispatchToProps = dispatch => ({
   },
   fetchTodos (filter, todos) {
     dispatch(fetchTodos(filter, todos))
-  },
-  requestTodos (filter) {
-    dispatch(requestTodos(filter))
   }
 })
 
