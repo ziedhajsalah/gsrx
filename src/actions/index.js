@@ -13,7 +13,15 @@ export const addTodo = text => (dispatch) =>
       })
     })
 
-export const toggleTodo = id => ({ type: 'TOGGLE_TODO', id })
+export const toggleTodo = id => dispatch =>
+  api.toggleTodo(id)
+    .then(res => res.json())
+    .then(todo => {
+      dispatch({
+        type: 'TOGGLE_TODO_SUCCESS',
+        response: normalize(todo, schema.todo)
+      })
+    })
 
 export const fetchTodos = filter => (dispatch, getState) => {
   if (getIsFetching(getState(), filter)) return Promise.resolve()

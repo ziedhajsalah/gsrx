@@ -24,14 +24,19 @@ export const addTodo = text => {
   })
 }
 
-export const toggleTodo = id => {
-  const todo = {}
-
-  return fetch(`http://localhost:3000/todos/${id}`, {
-    method: 'put',
-    headers: {
-      'content-type': 'application/json'
-    },
-    body: JSON.stringify(todo)
-  })
-}
+export const toggleTodo = id =>
+  fetchTodos('all').then(res => res.json())
+    .then(todos => todos.find(todo => todo.id === id))
+    .then(todo => {
+      const toggledTodo = {
+        ...todo,
+        completed: !todo.completed
+      }
+      return fetch(`http://localhost:3000/todos/${id}`, {
+        method: 'put',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(toggledTodo)
+      })
+    })

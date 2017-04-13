@@ -13,22 +13,22 @@
     {
       "id": "34234-jklkjsd-3333-hfjs",
       "text": "folo",
-      "completed": true
+      "completed": false
     },
     {
       "id": "34234-jklsd-3333-hskdj",
       "text": "nono",
-      "completed": false
+      "completed": true
     },
     {
       "id": "314603c3-ade1-4776-b19b-4a39ca2db1f9",
       "text": "sync todo",
-      "completed": false
+      "completed": true
     },
     {
       "id": "fadff7e4-fd10-4299-921d-da6d107ae51a",
       "text": "async todo",
-      "completed": false
+      "completed": true
     },
     {
       "id": "f8b2a45b-a5a5-437f-b443-af1e92c356fb",
