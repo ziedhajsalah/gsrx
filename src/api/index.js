@@ -7,3 +7,31 @@ export const fetchTodos = filter => {
     : filter === 'active' ? '/?completed=false' : '/?completed=true'
   return fetch(`http://localhost:3000/todos${query}`)
 }
+
+export const addTodo = text => {
+  const todo = {
+    id: v4(),
+    text,
+    completed: false
+  }
+
+  return fetch('http://localhost:3000/todos', {
+    method: 'post',
+    headers: {
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify(todo)
+  })
+}
+
+export const toggleTodo = id => {
+  const todo = {}
+
+  return fetch(`http://localhost:3000/todos/${id}`, {
+    method: 'put',
+    headers: {
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify(todo)
+  })
+}
