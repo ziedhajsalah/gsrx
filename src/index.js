@@ -1,13 +1,11 @@
 // @flow
-import 'babel-polyfill'
-import React from 'react'
-import ReactDOM from 'react-dom'
-import configureStore from './lib/configureStore.js'
-import Root from './components/Root'
+import 'babel-polyfill';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import configureStore from './lib/configureStore.js';
+import Root from './components/Root';
+import './index.css';
 
-const store = configureStore()
+const store = configureStore();
 
-ReactDOM.render(
-  <Root store={store} />,
-  document.getElementById('root')
-)
+ReactDOM.render(<Root store={store} />, document.getElementById('root'));

@@ -1,10 +1,15 @@
-import React from 'react'
+import React from 'react';
 
-const Todo = ({id, completed, text, toggleTodo}) => (
-  <li onClick={e => { toggleTodo(id) }}
-    style={{ textDecoration: completed ? 'line-through' : 'none' }}>
+const Todo = ({ id, completed, text, toggleTodo }) =>
+  <li
+    onClick={e => {
+      toggleTodo(id);
+    }}
+    className={
+      completed ? 'todo-list__item--completed' : 'todo-list__item--active'
+    }
+  >
     {text}
-  </li>
-)
+  </li>;
 
-export default Todo
+export default Todo;

@@ -1,15 +1,15 @@
 // @flow
-import React from 'react'
-import VisibleTodosList from '../containers/VisibleTodosList'
-import Footer from './Footer'
-import AddTodo from './AddTodo'
+import React from 'react';
+import VisibleTodosList from '../containers/VisibleTodosList';
+import Footer from './Footer';
+import AddTodo from './AddTodo';
 
-export default function App () {
+export default function App() {
   return (
-    <div>
+    <div className="todo-app">
       <AddTodo />
       <VisibleTodosList />
       <Footer />
     </div>
-  )
+  );
 }

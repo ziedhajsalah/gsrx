@@ -1,0 +1,192 @@
+:root {
+  font: 600 16px sans-serif;
+}
+
+body {
+  background: #bdc3c7;
+  margin: 0;
+}
+
+.container {
+  min-height: 100vh;
+  max-width: 730px;
+  width: 100%;
+  position: relative;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.todo-app {
+  background: #ecf0f1;
+  width: 100%;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
+  max-width: calc(100% - 20px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.todo-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+[class^="todo-list__item"] {
+  cursor: pointer;
+  height: 60px;
+  display: block;
+  text-transform: capitalize;
+  color: #af544f;
+  letter-spacing: 2px;
+  box-sizing: border-box;
+  padding: 20px 33px 0 78px;
+  box-shadow: 0 -1px 0 0 white, 0 -2px 0 0 #e6e6e6;
+  background-image: url('https://jsbin-user-assets.s3.amazonaws.com/GarthDB/box.svg');
+  background-repeat: no-repeat;
+  background-position: 28px 6px;
+}
+
+.todo-list__item--completed {
+  color: #16a085;
+  background-image: url('https://jsbin-user-assets.s3.amazonaws.com/GarthDB/done.svg');
+}
+
+.add-todo {
+  width: 100%;
+  position: relative;
+  height: 80px;
+  margin: 2px 0 1px;
+}
+
+.add-todo__button {
+  position: absolute;
+  display: block;
+  width: 60px;
+  height: 100%;
+  background: transparent;
+  color: rgba(0, 0, 0, 0);
+  border: 0;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  background-image: url('https://jsbin-user-assets.s3.amazonaws.com/GarthDB/add.svg');
+  background-repeat: no-repeat;
+  background-position: 28px 16px;
+}
+
+.add-todo__button:focus {
+  outline: none;
+}
+
+.add-todo__input {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: transparent;
+  font-size: 1rem;
+  padding-left: 80px;
+  box-sizing: border-box;
+  color: #666666;
+  text-transform: capitalize;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.add-todo__input:focus {
+  outline: none;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.add-todo__input::placeholder {
+  color: #b3b3b3;
+  opacity: 1;
+}
+
+.filters {
+  background: #2c3e50;
+  height: 80px;
+  box-sizing: border-box;
+  color: #ecf0f1;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, .2);
+  padding: 32px 35px 0;
+  width: calc(100% + 20px);
+  font-weight: 700;
+  border: 0;
+  border-radius: 0 0 3px 3px;
+  order: -1;
+}
+
+.filters__title,
+.filter {
+  display: inline-block;
+  margin-right: 30px;
+  position: relative;
+}
+
+.filter {
+  cursor: pointer;
+  padding-left: 16px;
+  color: rgba(236, 240, 241, 0.3);
+  text-decoration: none;
+}
+
+.filter:hover {
+  color: #ccc;
+}
+
+.filter__link--active {
+  color: #fff;
+}
+
+@media only screen and (min-width: 730px) {
+  .container {
+    max-width: 720px;
+    justify-content: flex-end;
+  }
+
+  .todo-app {
+    border-radius: 4px 4px 0 0;
+  }
+
+  .todo-list {
+    order: -1;
+    flex-direction: column;
+  }
+
+  [class^="todo-list__item"] {
+    box-shadow: 0 1px 0 0 #e6e6e6, 0 2px 0 0 white;
+  }
+
+  .filters {
+    border-radius: 3px 3px 0 0;
+    order: 0;
+  }
+}
+
+// animations
+
+.fade-enter {
+  height: 0;
+}
+
+.fade-enter.fade-enter-active {
+  height: 80px;
+  transition: height 70ms ease-in;
+}
+
+.fade-exit {
+  height: 80px;
+}
+
+.fade-exit.fade-exit-active {
+  height: 0;
+  transition: height 70ms ease-in;
+}

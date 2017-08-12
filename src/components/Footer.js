@@ -1,27 +1,17 @@
 // @flow
-import React, { PropTypes } from 'react'
-import FilterLink from '../containers/FilterLink'
+import React, { PropTypes } from 'react';
+import FilterLink from '../containers/FilterLink';
 
-const Footer = () => (
-  <p>
-    Show:
-    {' '}
-    <FilterLink filter='all'>
-      All
-    </FilterLink>
-    {', '}
-    <FilterLink filter='completed'>
-      Completed
-    </FilterLink>
-    {', '}
-    <FilterLink filter='active'>
-      ACTIVE
-    </FilterLink>
-  </p>
-)
+const Footer = () =>
+  <fieldset className="filters">
+    <span className="filters__title">Show:</span>
+    <FilterLink filter="all">All</FilterLink>
+    <FilterLink filter="completed">Completed</FilterLink>
+    <FilterLink filter="active">ACTIVE</FilterLink>
+  </fieldset>;
 
 Footer.contextTypes = {
-  store: PropTypes.object
-}
+  store: PropTypes.object,
+};
 
-export default Footer
+export default Footer;

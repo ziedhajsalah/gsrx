@@ -1,18 +1,15 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-const styles = {
-  active: {
-    textDecoration: 'none',
-    color: 'black'
-  }
-}
-
-export default function FilterNavLink ({filter, children}) {
+export default function FilterNavLink({ filter, children }) {
   return (
-    <NavLink exact to={filter === 'all' ? '/' : `/${filter}`}
-      activeStyle={styles.active}>
+    <NavLink
+      exact
+      to={filter === 'all' ? '/' : `/${filter}`}
+      className="filter"
+      activeClassName="filter__link--active"
+    >
       {children}
     </NavLink>
-  )
+  );
 }
